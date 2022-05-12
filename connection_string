@@ -1,0 +1,48 @@
+Connection string:-
+
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+
+import java.sql.Statement;
+
+
+Connection con = null;
+
+       
+
+        Statement stmt = null;
+
+        String username = request.getParameter("username");
+
+        String password = request.getParameter("password");
+
+        System.out.print(username+password);
+
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+
+            con = DriverManager.getConnection("jdbc:mysql://localhost/mysql", "root", "");
+
+            stmt = con.createStatement();
+
+            stmt.executeUpdate("insert into end values('"+username+"','"+password+"')");
+
+                     
+
+            RequestDispatcher rd = request.getRequestDispatcher("sucess.html");
+
+            rd.forward(request, response);
+
+
+        } catch (Exception e) {
+
+            out.print(e.getMessage());
+
+        }
+
+        }
+
+    }
+
